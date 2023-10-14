@@ -1,0 +1,74 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: "Ubuntu", sans-serif;
+}
+
+header {
+  height: 70px;
+  width: 100vw;
+  background-color: blanchedalmond;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  position: relative;
+}
+
+header > input,
+header > button {
+  height: 40px;
+  border-radius: 10px;
+  background-color: white;
+}
+
+#search {
+  font-family: "Ubuntu", sans-serif;
+  width: 50%;
+  font-size: 1.2rem;
+  padding: 0 10px;
+  border: none;
+}
+
+header::after {
+  height: 1px;
+  width: 100vw;
+  background-color: rgb(182, 182, 182);
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+button {
+  font-family: "Ubuntu", sans-serif;
+  padding: 0 20px;
+  font-size: 1.2rem;
+  border: none;
+  transition: background-color 0.05s;
+}
+
+button:hover {
+  background-color: aquamarine;
+}
+
+button:active {
+  background-color: rgb(255, 154, 107);
+}
+
+.gif-container {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 70px);
+  overflow: hidden;
+}
+
+img {
+  height: 50%;
+  border-radius: 15px;
+}

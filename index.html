@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <script src="./app.js"></script>
+    <title>Giphy Searcher</title>
+  </head>
+  <body>
+    <header>
+      <h1>GIF EXPLORER</h1>
+      <input type="text" id="search" placeholder="search..." />
+      <button>New</button>
+    </header>
+    <div class="gif-container">
+      <img src="#" alt="giphy image" />
+    </div>
+
+    <script>
+      const img = document.querySelector("img");
+      const newGifButton = document.querySelector("button");
+      const searchbar = document.querySelector("input");
+
+      fetchGif();
+
+      newGifButton.addEventListener("click", fetchGif);
+
+      searchbar.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" && document.activeElement === searchbar) {
+          event.preventDefault();
+          fetchGif();
+        }
+      });
+
+      function fetchGif(blankSearchbar = "stare") {
+        const searchTerm = searchbar.value;
+
+        if (searchTerm === "") {
+          fetch(
+            `https://api.giphy.com/v1/gifs/translate?api_key=w0QrQMjLcwK1sFmFdYr04vbWpYuSFdSE&s=${blankSearchbar}`,
+            { mode: "cors" }
+          )
+            .then(function (response) {
+              return response.json();
+            })
+            .then(function (response) {
+              img.src = response.data.images.original.url;
+            })
+            .catch(function (err) {
+              console.log(err);
+            });
+        } else {
+          fetch(
+            `https://api.giphy.com/v1/gifs/translate?api_key=w0QrQMjLcwK1sFmFdYr04vbWpYuSFdSE&s=${searchTerm}`,
+            { mode: "cors" }
+          )
+            .then(function (response) {
+              return response.json();
+            })
+            .then(function (response) {
+              img.src = response.data.images.original.url;
+              console.log(response.data);
+            })
+            .catch(function (err) {
+              console.log(err);
+            });
+        }
+      }
+    </script>
+  </body>
+</html>
