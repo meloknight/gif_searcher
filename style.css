@@ -5,6 +5,13 @@
 }
 
 body {
+  /* background-color: rgb(238, 209, 255); */
+  background: rgb(253, 255, 196);
+  background: linear-gradient(
+    128deg,
+    rgba(253, 255, 196, 1) 0%,
+    rgba(206, 153, 255, 1) 100%
+  );
   font-family: "Ubuntu", sans-serif;
 }
 
