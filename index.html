@@ -39,38 +39,56 @@
         }
       });
 
-      function fetchGif(blankSearchbar = "stare") {
+      async function fetchGif(blankSearchbar = "corgi") {
         const searchTerm = searchbar.value;
 
         if (searchTerm === "") {
-          fetch(
+          const response = await fetch(
             `https://api.giphy.com/v1/gifs/translate?api_key=w0QrQMjLcwK1sFmFdYr04vbWpYuSFdSE&s=${blankSearchbar}`,
             { mode: "cors" }
-          )
-            .then(function (response) {
-              return response.json();
-            })
-            .then(function (response) {
-              img.src = response.data.images.original.url;
-            })
-            .catch(function (err) {
-              console.log(err);
-            });
+          );
+          const gifData = await response.json();
+          img.src = gifData.data.images.original.url;
+
+          // fetch(
+          //   `https://api.giphy.com/v1/gifs/translate?api_key=w0QrQMjLcwK1sFmFdYr04vbWpYuSFdSE&s=${blankSearchbar}`,
+          //   { mode: "cors" }
+          // )
+          //   .then(function (response) {
+          //     return response.json();
+          //   })
+          //   .then(function (response) {
+          //     img.src = response.data.images.original.url;
+          //   })
+          //   .catch(function (err) {
+          //     console.log(err);
+          //   });
         } else {
-          fetch(
+          const response = await fetch(
             `https://api.giphy.com/v1/gifs/translate?api_key=w0QrQMjLcwK1sFmFdYr04vbWpYuSFdSE&s=${searchTerm}`,
             { mode: "cors" }
-          )
-            .then(function (response) {
-              return response.json();
-            })
-            .then(function (response) {
-              img.src = response.data.images.original.url;
-              console.log(response.data);
-            })
-            .catch(function (err) {
-              console.log(err);
-            });
+          );
+          const gifData = await response.json();
+          img.src = gifData.data.images.original.url;
+
+          // response.json().then(function(response) {
+          //   img.src = response.data.images.original.url;
+          // })
+
+          // fetch(
+          //   `https://api.giphy.com/v1/gifs/translate?api_key=w0QrQMjLcwK1sFmFdYr04vbWpYuSFdSE&s=${searchTerm}`,
+          //   { mode: "cors" }
+          // )
+          //   .then(function (response) {
+          //     return response.json();
+          //   })
+          //   .then(function (response) {
+          //     img.src = response.data.images.original.url;
+          //     console.log(response.data);
+          //   })
+          //   .catch(function (err) {
+          //     console.log(err);
+          //   });
         }
       }
     </script>
